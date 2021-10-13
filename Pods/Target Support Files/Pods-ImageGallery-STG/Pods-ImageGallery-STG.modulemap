@@ -1,0 +1,6 @@
+framework module Pods_ImageGallery_STG {
+  umbrella header "Pods-ImageGallery-STG-umbrella.h"
+
+  export *
+  module * { export * }
+}
