@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -22,6 +22,48 @@
 		EB07DC9027172DA3005AD0AF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB07DC6B27172D7C005AD0AF /* SceneDelegate.swift */; };
 		EB07DC9327172DA3005AD0AF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB07DC7427172D7E005AD0AF /* LaunchScreen.storyboard */; };
 		EB07DC9427172DA3005AD0AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB07DC7227172D7E005AD0AF /* Assets.xcassets */; };
+		EB07DCA5271731F0005AD0AF /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB07DCA4271731F0005AD0AF /* Coordinator.swift */; };
+		EB07DCA6271731F0005AD0AF /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB07DCA4271731F0005AD0AF /* Coordinator.swift */; };
+		EB07DCA7271731F0005AD0AF /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB07DCA4271731F0005AD0AF /* Coordinator.swift */; };
+		EB07DCA927173286005AD0AF /* Coordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB07DCA827173286005AD0AF /* Coordinatable.swift */; };
+		EB07DCAA27173286005AD0AF /* Coordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB07DCA827173286005AD0AF /* Coordinatable.swift */; };
+		EB07DCAB27173286005AD0AF /* Coordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB07DCA827173286005AD0AF /* Coordinatable.swift */; };
+		EB07DCAD271733A4005AD0AF /* ViewModelable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB07DCAC271733A4005AD0AF /* ViewModelable.swift */; };
+		EB07DCAE271733A4005AD0AF /* ViewModelable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB07DCAC271733A4005AD0AF /* ViewModelable.swift */; };
+		EB07DCAF271733A4005AD0AF /* ViewModelable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB07DCAC271733A4005AD0AF /* ViewModelable.swift */; };
+		EB07DCB427173534005AD0AF /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB07DCB327173534005AD0AF /* SplashViewController.swift */; };
+		EB07DCB527173534005AD0AF /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB07DCB327173534005AD0AF /* SplashViewController.swift */; };
+		EB07DCB627173534005AD0AF /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB07DCB327173534005AD0AF /* SplashViewController.swift */; };
+		EB07DCB827173545005AD0AF /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB07DCB727173545005AD0AF /* SplashViewModel.swift */; };
+		EB07DCB927173545005AD0AF /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB07DCB727173545005AD0AF /* SplashViewModel.swift */; };
+		EB07DCBA27173545005AD0AF /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB07DCB727173545005AD0AF /* SplashViewModel.swift */; };
+		EB07DCBC27173552005AD0AF /* SplashCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB07DCBB27173552005AD0AF /* SplashCoordinator.swift */; };
+		EB07DCBD27173552005AD0AF /* SplashCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB07DCBB27173552005AD0AF /* SplashCoordinator.swift */; };
+		EB07DCBE27173552005AD0AF /* SplashCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB07DCBB27173552005AD0AF /* SplashCoordinator.swift */; };
+		EB07DCC1271735C4005AD0AF /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB07DCC0271735C4005AD0AF /* BaseCoordinator.swift */; };
+		EB07DCC2271735C4005AD0AF /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB07DCC0271735C4005AD0AF /* BaseCoordinator.swift */; };
+		EB07DCC3271735C4005AD0AF /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB07DCC0271735C4005AD0AF /* BaseCoordinator.swift */; };
+		EB07DCC627173771005AD0AF /* UINavigationController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB07DCC527173771005AD0AF /* UINavigationController+Ext.swift */; };
+		EB07DCC727173771005AD0AF /* UINavigationController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB07DCC527173771005AD0AF /* UINavigationController+Ext.swift */; };
+		EB07DCC827173771005AD0AF /* UINavigationController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB07DCC527173771005AD0AF /* UINavigationController+Ext.swift */; };
+		EB07DCCE27173C91005AD0AF /* UIConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB07DCCD27173C91005AD0AF /* UIConfigurator.swift */; };
+		EB07DCCF27173C91005AD0AF /* UIConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB07DCCD27173C91005AD0AF /* UIConfigurator.swift */; };
+		EB07DCD027173C91005AD0AF /* UIConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB07DCCD27173C91005AD0AF /* UIConfigurator.swift */; };
+		EB07DCD227173D0C005AD0AF /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB07DCD127173D0C005AD0AF /* BaseView.swift */; };
+		EB07DCD327173D0C005AD0AF /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB07DCD127173D0C005AD0AF /* BaseView.swift */; };
+		EB07DCD427173D0C005AD0AF /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB07DCD127173D0C005AD0AF /* BaseView.swift */; };
+		EB07DCD627173DA0005AD0AF /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB07DCD527173DA0005AD0AF /* BaseViewController.swift */; };
+		EB07DCD727173DA0005AD0AF /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB07DCD527173DA0005AD0AF /* BaseViewController.swift */; };
+		EB07DCD827173DA0005AD0AF /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB07DCD527173DA0005AD0AF /* BaseViewController.swift */; };
+		EB07DCDA27173E23005AD0AF /* RootViewConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB07DCD927173E23005AD0AF /* RootViewConfigurator.swift */; };
+		EB07DCDB27173E23005AD0AF /* RootViewConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB07DCD927173E23005AD0AF /* RootViewConfigurator.swift */; };
+		EB07DCDC27173E23005AD0AF /* RootViewConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB07DCD927173E23005AD0AF /* RootViewConfigurator.swift */; };
+		EB07DCDF27173F75005AD0AF /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB07DCDE27173F75005AD0AF /* SplashView.swift */; };
+		EB07DCE027173F75005AD0AF /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB07DCDE27173F75005AD0AF /* SplashView.swift */; };
+		EB07DCE127173F75005AD0AF /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB07DCDE27173F75005AD0AF /* SplashView.swift */; };
+		EB07DCE4271740F6005AD0AF /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB07DCE3271740F6005AD0AF /* Const.swift */; };
+		EB07DCE5271740F6005AD0AF /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB07DCE3271740F6005AD0AF /* Const.swift */; };
+		EB07DCE6271740F6005AD0AF /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB07DCE3271740F6005AD0AF /* Const.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +85,20 @@
 		EB07DC9C27172E20005AD0AF /* Info-DEV.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-DEV.plist"; sourceTree = "<group>"; };
 		EB07DC9D27172E20005AD0AF /* Info-PROD.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-PROD.plist"; sourceTree = "<group>"; };
 		EB07DC9E27172E20005AD0AF /* Info-STG.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-STG.plist"; sourceTree = "<group>"; };
+		EB07DCA4271731F0005AD0AF /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		EB07DCA827173286005AD0AF /* Coordinatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinatable.swift; sourceTree = "<group>"; };
+		EB07DCAC271733A4005AD0AF /* ViewModelable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelable.swift; sourceTree = "<group>"; };
+		EB07DCB327173534005AD0AF /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		EB07DCB727173545005AD0AF /* SplashViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
+		EB07DCBB27173552005AD0AF /* SplashCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashCoordinator.swift; sourceTree = "<group>"; };
+		EB07DCC0271735C4005AD0AF /* BaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
+		EB07DCC527173771005AD0AF /* UINavigationController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Ext.swift"; sourceTree = "<group>"; };
+		EB07DCCD27173C91005AD0AF /* UIConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIConfigurator.swift; sourceTree = "<group>"; };
+		EB07DCD127173D0C005AD0AF /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		EB07DCD527173DA0005AD0AF /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		EB07DCD927173E23005AD0AF /* RootViewConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewConfigurator.swift; sourceTree = "<group>"; };
+		EB07DCDE27173F75005AD0AF /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		EB07DCE3271740F6005AD0AF /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
 		F0CAEF9399A66FC5F3B08642 /* Pods-ImageGallery-STG.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageGallery-STG.debug.xcconfig"; path = "Target Support Files/Pods-ImageGallery-STG/Pods-ImageGallery-STG.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -84,7 +140,6 @@
 				F0CAEF9399A66FC5F3B08642 /* Pods-ImageGallery-STG.debug.xcconfig */,
 				C518954660034E65AA0A76B9 /* Pods-ImageGallery-STG.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -122,6 +177,9 @@
 			isa = PBXGroup;
 			children = (
 				EB07DCA027172E7C005AD0AF /* Core */,
+				EB07DCA2271731C4005AD0AF /* Base */,
+				EB07DCE2271740E5005AD0AF /* Const */,
+				EB07DCC427173758005AD0AF /* Extensions */,
 				EB07DCA127172F02005AD0AF /* Scene */,
 				EB07DC9F27172E37005AD0AF /* Resources */,
 				EB07DC9B27172E03005AD0AF /* Supportings */,
@@ -160,8 +218,83 @@
 		EB07DCA127172F02005AD0AF /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				EB07DCB1271734D5005AD0AF /* Splash */,
 			);
 			path = Scene;
+			sourceTree = "<group>";
+		};
+		EB07DCA2271731C4005AD0AF /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				EB07DCBF271735A7005AD0AF /* Coordinator */,
+				EB07DCB02717347D005AD0AF /* UIComponents */,
+				EB07DCA3271731D5005AD0AF /* Protocols */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		EB07DCA3271731D5005AD0AF /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				EB07DCA4271731F0005AD0AF /* Coordinator.swift */,
+				EB07DCA827173286005AD0AF /* Coordinatable.swift */,
+				EB07DCAC271733A4005AD0AF /* ViewModelable.swift */,
+				EB07DCCD27173C91005AD0AF /* UIConfigurator.swift */,
+				EB07DCD927173E23005AD0AF /* RootViewConfigurator.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		EB07DCB02717347D005AD0AF /* UIComponents */ = {
+			isa = PBXGroup;
+			children = (
+				EB07DCD127173D0C005AD0AF /* BaseView.swift */,
+				EB07DCD527173DA0005AD0AF /* BaseViewController.swift */,
+			);
+			path = UIComponents;
+			sourceTree = "<group>";
+		};
+		EB07DCB1271734D5005AD0AF /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				EB07DCB327173534005AD0AF /* SplashViewController.swift */,
+				EB07DCB727173545005AD0AF /* SplashViewModel.swift */,
+				EB07DCBB27173552005AD0AF /* SplashCoordinator.swift */,
+				EB07DCDD27173F60005AD0AF /* Views */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
+		EB07DCBF271735A7005AD0AF /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				EB07DCC0271735C4005AD0AF /* BaseCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		EB07DCC427173758005AD0AF /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				EB07DCC527173771005AD0AF /* UINavigationController+Ext.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		EB07DCDD27173F60005AD0AF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				EB07DCDE27173F75005AD0AF /* SplashView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		EB07DCE2271740E5005AD0AF /* Const */ = {
+			isa = PBXGroup;
+			children = (
+				EB07DCE3271740F6005AD0AF /* Const.swift */,
+			);
+			path = Const;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -413,8 +546,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB07DCD627173DA0005AD0AF /* BaseViewController.swift in Sources */,
 				EB07DC6A27172D7C005AD0AF /* AppDelegate.swift in Sources */,
+				EB07DCDF27173F75005AD0AF /* SplashView.swift in Sources */,
+				EB07DCC1271735C4005AD0AF /* BaseCoordinator.swift in Sources */,
+				EB07DCBC27173552005AD0AF /* SplashCoordinator.swift in Sources */,
+				EB07DCD227173D0C005AD0AF /* BaseView.swift in Sources */,
+				EB07DCA927173286005AD0AF /* Coordinatable.swift in Sources */,
+				EB07DCAD271733A4005AD0AF /* ViewModelable.swift in Sources */,
+				EB07DCDA27173E23005AD0AF /* RootViewConfigurator.swift in Sources */,
+				EB07DCB827173545005AD0AF /* SplashViewModel.swift in Sources */,
+				EB07DCC627173771005AD0AF /* UINavigationController+Ext.swift in Sources */,
+				EB07DCCE27173C91005AD0AF /* UIConfigurator.swift in Sources */,
+				EB07DCB427173534005AD0AF /* SplashViewController.swift in Sources */,
+				EB07DCE4271740F6005AD0AF /* Const.swift in Sources */,
 				EB07DC6C27172D7C005AD0AF /* SceneDelegate.swift in Sources */,
+				EB07DCA5271731F0005AD0AF /* Coordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,8 +569,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB07DCD727173DA0005AD0AF /* BaseViewController.swift in Sources */,
 				EB07DC8027172D91005AD0AF /* AppDelegate.swift in Sources */,
+				EB07DCE027173F75005AD0AF /* SplashView.swift in Sources */,
+				EB07DCC2271735C4005AD0AF /* BaseCoordinator.swift in Sources */,
+				EB07DCBD27173552005AD0AF /* SplashCoordinator.swift in Sources */,
+				EB07DCD327173D0C005AD0AF /* BaseView.swift in Sources */,
+				EB07DCAA27173286005AD0AF /* Coordinatable.swift in Sources */,
+				EB07DCAE271733A4005AD0AF /* ViewModelable.swift in Sources */,
+				EB07DCDB27173E23005AD0AF /* RootViewConfigurator.swift in Sources */,
+				EB07DCB927173545005AD0AF /* SplashViewModel.swift in Sources */,
+				EB07DCC727173771005AD0AF /* UINavigationController+Ext.swift in Sources */,
+				EB07DCCF27173C91005AD0AF /* UIConfigurator.swift in Sources */,
+				EB07DCB527173534005AD0AF /* SplashViewController.swift in Sources */,
+				EB07DCE5271740F6005AD0AF /* Const.swift in Sources */,
 				EB07DC8127172D91005AD0AF /* SceneDelegate.swift in Sources */,
+				EB07DCA6271731F0005AD0AF /* Coordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -431,8 +592,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB07DCD827173DA0005AD0AF /* BaseViewController.swift in Sources */,
 				EB07DC8F27172DA3005AD0AF /* AppDelegate.swift in Sources */,
+				EB07DCE127173F75005AD0AF /* SplashView.swift in Sources */,
+				EB07DCC3271735C4005AD0AF /* BaseCoordinator.swift in Sources */,
+				EB07DCBE27173552005AD0AF /* SplashCoordinator.swift in Sources */,
+				EB07DCD427173D0C005AD0AF /* BaseView.swift in Sources */,
+				EB07DCAB27173286005AD0AF /* Coordinatable.swift in Sources */,
+				EB07DCAF271733A4005AD0AF /* ViewModelable.swift in Sources */,
+				EB07DCDC27173E23005AD0AF /* RootViewConfigurator.swift in Sources */,
+				EB07DCBA27173545005AD0AF /* SplashViewModel.swift in Sources */,
+				EB07DCC827173771005AD0AF /* UINavigationController+Ext.swift in Sources */,
+				EB07DCD027173C91005AD0AF /* UIConfigurator.swift in Sources */,
+				EB07DCB627173534005AD0AF /* SplashViewController.swift in Sources */,
+				EB07DCE6271740F6005AD0AF /* Const.swift in Sources */,
 				EB07DC9027172DA3005AD0AF /* SceneDelegate.swift in Sources */,
+				EB07DCA7271731F0005AD0AF /* Coordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
