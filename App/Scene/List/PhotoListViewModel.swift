@@ -15,12 +15,12 @@ class PhotoListViewModel: ViewModelType {
     struct Input {
         let searchText: AnyObserver<String>
         let itemSelected: AnyObserver<IndexPath>
-        let loadMore: AnyObserver<Void>
+        let loadMore: AnyObserver<Bool>
     }
     
     // MARK:- Output
     struct Output {
-        let photos: Observable<[Photo]>
+        let photos: Driver<[Photo]>
         let detail: Observable<Photo>
     }
     
@@ -34,7 +34,7 @@ class PhotoListViewModel: ViewModelType {
     private var isPaginated: Bool = false
     private let _searchText = ReplaySubject<String>.create(bufferSize: 1)
     private let _itemSelected = PublishSubject<IndexPath>()
-    private let _loadMore = PublishSubject<Void>()
+    private let _loadMore = PublishSubject<Bool>()
     private let _photos = BehaviorRelay<[Photo]>(value: [])
     private let _detail = PublishSubject<Photo>()
     
@@ -58,7 +58,7 @@ class PhotoListViewModel: ViewModelType {
             loadMore: _loadMore.asObserver()
         )
         output = Output(
-            photos: _photos.asObservable(),
+            photos: _photos.asDriver(onErrorJustReturn: []),
             detail: _detail.asObservable()
         )
     }
@@ -68,15 +68,6 @@ class PhotoListViewModel: ViewModelType {
     private func prepareSearchQuery() -> Observable<String> {
         let searchQuery = _searchText
             .debounce(.milliseconds(500), scheduler: ConcurrentMainScheduler.instance)
-            .do(onNext: { [weak self] text in
-                guard let self = self else { return }
-                // check weater the request is paginated or not
-                self.isPaginated = (text == self.currentQuery)
-                if !self.isPaginated {
-                    // reset current page
-                    self.currentPage = 0
-                }
-            })
             .flatMap { text -> Observable<String> in
                 if text.isEmpty {
                     return .just(Const.SEARCH_INITIAL)
@@ -94,42 +85,50 @@ class PhotoListViewModel: ViewModelType {
         let searchResult = query
             .flatMap { [weak self] text -> Observable<Event<[Photo]>> in
                 guard let self = self else { return .empty() }
-                let page = self.currentPage > 1 ? self.currentPage : 1
-                return self.fetchFeed(query: text, page: page)
+                return self.fetchFeed(query: text, page: 1)
                     .do(onNext: {
-                        if $0.nextPage == nil {
-                            self._loadMore.onCompleted()
-                        } else {
-                            // set current page & search query
-                            self.currentPage = $0.page
-                            self.currentQuery = text
-                        }
+                        self.currentPage = $0.page
+                        self.currentQuery = text
                     })
-                    .map { feed -> [Photo] in
-                        if self.isPaginated {
-                            return self._photos.value + feed.photos
-                        } else {
-                            return feed.photos
-                        }
-                    }
+                    .map { $0.photos }
                     .materialize()
             }
             .share()
         
         searchResult
             .flatMap { $0.element.map(Observable.just) ?? .empty() }
-            .bind(to: _photos)
+            .subscribe(onNext: { photos in
+                self._photos.accept(photos)
+            })
             .disposed(by: disposeBag)
     }
     
     /// Fetch the data of next page
     private func prepareNextPageResult() {
         _loadMore
-            .bind { [weak self] in
+            .throttle(.milliseconds(500), scheduler: ConcurrentMainScheduler.instance)
+            .asDriver(onErrorJustReturn: false)
+            .drive { [weak self] next in
                 guard let self = self else { return }
-                self.currentPage += 1
-                self._searchText.onNext(self.currentQuery)
+                if next {
+                    self.loadNext(query: self.currentQuery, page: self.currentPage + 1)
+                }
             }
+            .disposed(by: disposeBag)
+    }
+    
+    private func loadNext(query: String, page: Int) {
+        fetchFeed(query: query, page: page)
+            .subscribe(onNext: { [weak self] feed in
+                guard let self = self else { return }
+                guard feed.photos.count > 0 else {
+                    self._loadMore.onCompleted()
+                    return
+                }
+                let current = self._photos.value
+                self._photos.accept(current + feed.photos)
+                self.currentPage = feed.page
+            })
             .disposed(by: disposeBag)
     }
     

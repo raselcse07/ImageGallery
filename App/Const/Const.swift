@@ -16,7 +16,4 @@ struct Const {
     
     ///- Tag: Image Name
     static let LOGO                     = "logo"
-    
-    /// - Tag: API Auth Key
-    static let API_KEY                  = "563492ad6f91700001000001479b02c753ef4400a179c035e516a474"
 }

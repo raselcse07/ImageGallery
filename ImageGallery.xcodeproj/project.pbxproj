@@ -121,6 +121,9 @@
 		EBAA9D09271C59E5008121B7 /* Reactive+UIScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAA9D08271C59E5008121B7 /* Reactive+UIScrollView.swift */; };
 		EBAA9D0A271C59E5008121B7 /* Reactive+UIScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAA9D08271C59E5008121B7 /* Reactive+UIScrollView.swift */; };
 		EBAA9D0B271C59E5008121B7 /* Reactive+UIScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAA9D08271C59E5008121B7 /* Reactive+UIScrollView.swift */; };
+		EBAA9D0E271C6646008121B7 /* PhotoDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAA9D0D271C6646008121B7 /* PhotoDetailController.swift */; };
+		EBAA9D0F271C6646008121B7 /* PhotoDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAA9D0D271C6646008121B7 /* PhotoDetailController.swift */; };
+		EBAA9D10271C6646008121B7 /* PhotoDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAA9D0D271C6646008121B7 /* PhotoDetailController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -177,6 +180,7 @@
 		EBAA9D03271C581E008121B7 /* APIConfig+DEV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIConfig+DEV.swift"; sourceTree = "<group>"; };
 		EBAA9D05271C584E008121B7 /* APIConfig+STG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIConfig+STG.swift"; sourceTree = "<group>"; };
 		EBAA9D08271C59E5008121B7 /* Reactive+UIScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reactive+UIScrollView.swift"; sourceTree = "<group>"; };
+		EBAA9D0D271C6646008121B7 /* PhotoDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailController.swift; sourceTree = "<group>"; };
 		F0CAEF9399A66FC5F3B08642 /* Pods-ImageGallery-STG.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageGallery-STG.debug.xcconfig"; path = "Target Support Files/Pods-ImageGallery-STG/Pods-ImageGallery-STG.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -302,6 +306,7 @@
 			children = (
 				EB07DCB1271734D5005AD0AF /* Splash */,
 				EB2B083B271A1618004B8EC8 /* List */,
+				EBAA9D0C271C662A008121B7 /* Detail */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -490,6 +495,14 @@
 				EBAA9D08271C59E5008121B7 /* Reactive+UIScrollView.swift */,
 			);
 			path = Reactive;
+			sourceTree = "<group>";
+		};
+		EBAA9D0C271C662A008121B7 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				EBAA9D0D271C6646008121B7 /* PhotoDetailController.swift */,
+			);
+			path = Detail;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -760,6 +773,7 @@
 				EB1C7FFA27197D6000D4F984 /* HTTPMethod.swift in Sources */,
 				EB2B0845271A165E004B8EC8 /* PhotoListCoordinator.swift in Sources */,
 				EB07DCDA27173E23005AD0AF /* RootViewConfigurator.swift in Sources */,
+				EBAA9D0E271C6646008121B7 /* PhotoDetailController.swift in Sources */,
 				EBAA9D09271C59E5008121B7 /* Reactive+UIScrollView.swift in Sources */,
 				EB07DCC627173771005AD0AF /* UINavigationController+Ext.swift in Sources */,
 				EB07DCCE27173C91005AD0AF /* UIConfigurator.swift in Sources */,
@@ -802,6 +816,7 @@
 				EB2B0842271A1647004B8EC8 /* PhotoListViewModel.swift in Sources */,
 				EB1C7FFB27197D6000D4F984 /* HTTPMethod.swift in Sources */,
 				EB2B0846271A165E004B8EC8 /* PhotoListCoordinator.swift in Sources */,
+				EBAA9D0F271C6646008121B7 /* PhotoDetailController.swift in Sources */,
 				EBAA9D0A271C59E5008121B7 /* Reactive+UIScrollView.swift in Sources */,
 				EB07DCDB27173E23005AD0AF /* RootViewConfigurator.swift in Sources */,
 				EB07DCC727173771005AD0AF /* UINavigationController+Ext.swift in Sources */,
@@ -844,6 +859,7 @@
 				EB2B0843271A1647004B8EC8 /* PhotoListViewModel.swift in Sources */,
 				EB1C7FFC27197D6000D4F984 /* HTTPMethod.swift in Sources */,
 				EB2B0847271A165E004B8EC8 /* PhotoListCoordinator.swift in Sources */,
+				EBAA9D10271C6646008121B7 /* PhotoDetailController.swift in Sources */,
 				EBAA9D0B271C59E5008121B7 /* Reactive+UIScrollView.swift in Sources */,
 				EB07DCDC27173E23005AD0AF /* RootViewConfigurator.swift in Sources */,
 				EB07DCC827173771005AD0AF /* UINavigationController+Ext.swift in Sources */,

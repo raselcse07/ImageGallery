@@ -11,7 +11,7 @@ import RxCocoa
 
 extension Reactive where Base: UIScrollView {
     
-    func toBottom() -> ControlEvent<Void> {
+    func toBottom() -> ControlEvent<Bool> {
         let offset: CGFloat = 0.0
         let source = contentOffset.map { contentOffset in
             let visibleHeight = self.base.frame.height - self.base.contentInset.top - self.base.contentInset.bottom
@@ -21,7 +21,7 @@ extension Reactive where Base: UIScrollView {
         }
         .distinctUntilChanged()
         .filter { $0 }
-        .map { _ in () }
+//        .map { _ in () }
         return ControlEvent(events: source)
     }
 }

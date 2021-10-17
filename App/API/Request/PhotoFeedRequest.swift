@@ -21,7 +21,7 @@ class PhotoFeedRequest: APIRequest<PhotoFeed> {
     override var query: QueryItems? {
         return [
             "query"     : searchTerm,
-            "per_page"  : String(describing: 10),
+            "per_page"  : String(describing: 20),
             "page"      : String(describing: page)
         ]
     }

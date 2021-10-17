@@ -55,22 +55,23 @@ class PhotoListViewController: BaseViewController, ViewModelable, Coordinatable,
         rootView
             .collectionView
             .rx
-            .toBottom()
-            .bind(to: viewModel.input.loadMore)
+            .itemSelected
+            .bind(to: viewModel.input.itemSelected)
             .disposed(by: disposeBag)
         
         rootView
             .collectionView
             .rx
-            .itemSelected
-            .bind(to: viewModel.input.itemSelected)
+            .toBottom()
+            .skip(1)
+            .bind(to: viewModel.input.loadMore)
             .disposed(by: disposeBag)
         
         // Output
         viewModel
             .output
             .photos
-            .bind(to: rootView.collectionView.rx.items(cellIdentifier: PhotoListCell.indentifier, cellType: PhotoListCell.self)) { _ , model, cell in
+            .drive(rootView.collectionView.rx.items(cellIdentifier: PhotoListCell.indentifier, cellType: PhotoListCell.self)) { _ , model, cell in
                 cell.setup(model: model)
             }
             .disposed(by: disposeBag)
@@ -93,7 +94,6 @@ class PhotoListViewController: BaseViewController, ViewModelable, Coordinatable,
                 self.searchController.searchBar.resignFirstResponder()
             })
             .disposed(by: disposeBag)
-            
     }
 }
 
@@ -111,5 +111,3 @@ extension PhotoListViewController {
         rootView.collectionView.register(PhotoListCell.self, forCellWithReuseIdentifier: PhotoListCell.indentifier)
     }
 }
-
-

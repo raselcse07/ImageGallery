@@ -15,7 +15,7 @@ class APIRequest<Model: Decodable>: HTTPRequest<Model> {
     
     override var headers: Headers {
         return [
-            "Authorization" : "Bearer \(Const.API_KEY)"
+            "Authorization" : "Bearer \(APIConfig.authKey)"
         ]
     }
 }
