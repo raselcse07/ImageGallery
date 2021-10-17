@@ -22,6 +22,10 @@ class BaseCoordinator: Coordinator {
         
     }
     
+    func set(_ viewController: [UIViewController], animated: Bool = true) {
+        navigationController.setViewControllers(viewController, animated: animated)
+    }
+    
     func push(_ viewController: UIViewController, animated: Bool = true) {
         navigationController.pushViewController(viewController, animated: true)
     }

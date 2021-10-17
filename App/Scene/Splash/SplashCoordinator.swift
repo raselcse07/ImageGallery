@@ -16,9 +16,13 @@ final class SplashCoordinator: BaseCoordinator {
     }
     
     override func start() {
-        let viewModel: SplashViewModel = .init()
-        var viewController: SplashViewController = .init(viewModel: viewModel)
+        var viewController: SplashViewController = .init()
         viewController.register(to: self)
-        push(viewController)
+        set([viewController])
+    }
+    
+    func startPhotoList() {
+        let photoListCoordinator: PhotoListCoordinator = .init(navigationController: navigationController)
+        photoListCoordinator.start()
     }
 }

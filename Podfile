@@ -4,6 +4,7 @@ def common_pod
 
   pod 'RxSwift'
   pod 'RxCocoa'
+  pod 'Kingfisher'
 
 end 
 

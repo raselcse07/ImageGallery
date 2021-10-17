@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 protocol ViewModelable {
-    associatedtype ViewModelType: NSObject
+    associatedtype ViewModelType
     var viewModel: ViewModelType! { get set }
     init(viewModel: ViewModelType)
 }

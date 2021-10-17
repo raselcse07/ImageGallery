@@ -7,16 +7,15 @@
 
 import Foundation
 import UIKit
+import RxSwift
 
-class SplashViewController: BaseViewController, ViewModelable, Coordinatable, RootViewConfigurator {
+class SplashViewController: BaseViewController, Coordinatable, RootViewConfigurator {
     
-    // MARK: - ViewModel, Coordinator & RootView Type
-    typealias ViewModelType = SplashViewModel
+    // MARK: - Coordinator & RootView Type
     typealias CoordinatorType = SplashCoordinator
     typealias RootViewType = SplashView
     
     // MARK: - Properties
-    var viewModel: SplashViewModel!
     var coordinator: SplashCoordinator?
     
     // MARK: - Life Cycle
@@ -26,16 +25,10 @@ class SplashViewController: BaseViewController, ViewModelable, Coordinatable, Ro
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.didFinish()
-    }
-    
-    override func bindViewModel() {
-        viewModel
-            .rx
-            .finish
-            .bind { state in
-                print(state)
-            }
-            .disposed(by: disposeBag)
+        // Finished Initialization
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+            guard let self = self else { return }
+            self.coordinator?.startPhotoList()
+        }
     }
 }
