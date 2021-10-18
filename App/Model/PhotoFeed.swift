@@ -41,9 +41,11 @@ struct Photo: Decodable {
 // MARK: - Src
 struct Src: Decodable {
     let medium: String
+    let large2x: String
     
     enum CodingKeys: String, CodingKey {
         case medium
+        case large2x
     }
 }
 

@@ -52,6 +52,14 @@ class PhotoListViewController: BaseViewController, ViewModelable, Coordinatable,
             .bind(to: viewModel.input.searchText)
             .disposed(by: disposeBag)
         
+        searchController
+            .searchBar
+            .rx
+            .cancelButtonClicked
+            .map { _ in Const.SEARCH_INITIAL }
+            .bind(to: viewModel.input.searchText)
+            .disposed(by: disposeBag)
+        
         rootView
             .collectionView
             .rx
@@ -79,20 +87,10 @@ class PhotoListViewController: BaseViewController, ViewModelable, Coordinatable,
         viewModel
             .output
             .detail
-            .bind { data in
-                print(data) // TODO: Show Detail
-            }
-            .disposed(by: disposeBag)
-        
-        searchController
-            .searchBar
-            .rx
-            .searchButtonClicked
-            .asDriver(onErrorJustReturn: ())
-            .drive(onNext: { [weak self] in
+            .bind { [weak self] photo in
                 guard let self = self else { return }
-                self.searchController.searchBar.resignFirstResponder()
-            })
+                self.coordinator?.detail(with: photo)
+            }
             .disposed(by: disposeBag)
     }
 }
@@ -106,7 +104,8 @@ extension PhotoListViewController {
         navigationItem.title = Const.NAV_TITLE_PHOTO_LIST
         navigationItem.hidesSearchBarWhenScrolling = true
         navigationController?.navigationBar.prefersLargeTitles = true
-
+        // Collection View Setup
+        rootView.collectionView.keyboardDismissMode = .onDrag
         // Regsiter CollectionView Cell
         rootView.collectionView.register(PhotoListCell.self, forCellWithReuseIdentifier: PhotoListCell.indentifier)
     }

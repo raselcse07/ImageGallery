@@ -112,6 +112,15 @@
 		EB442850271ABBEB00285C3E /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB44284F271ABBEB00285C3E /* BaseCollectionViewCell.swift */; };
 		EB442851271ABBEB00285C3E /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB44284F271ABBEB00285C3E /* BaseCollectionViewCell.swift */; };
 		EB442852271ABBEB00285C3E /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB44284F271ABBEB00285C3E /* BaseCollectionViewCell.swift */; };
+		EB6D14A9271C8CE90016E5F4 /* PhotoDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6D14A8271C8CE90016E5F4 /* PhotoDetailViewModel.swift */; };
+		EB6D14AA271C8CE90016E5F4 /* PhotoDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6D14A8271C8CE90016E5F4 /* PhotoDetailViewModel.swift */; };
+		EB6D14AB271C8CE90016E5F4 /* PhotoDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6D14A8271C8CE90016E5F4 /* PhotoDetailViewModel.swift */; };
+		EB6D14AD271C8CFD0016E5F4 /* PhotoDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6D14AC271C8CFD0016E5F4 /* PhotoDetailCoordinator.swift */; };
+		EB6D14AE271C8CFD0016E5F4 /* PhotoDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6D14AC271C8CFD0016E5F4 /* PhotoDetailCoordinator.swift */; };
+		EB6D14AF271C8CFD0016E5F4 /* PhotoDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6D14AC271C8CFD0016E5F4 /* PhotoDetailCoordinator.swift */; };
+		EB6D14B2271C8D650016E5F4 /* PhotoDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6D14B1271C8D650016E5F4 /* PhotoDetailView.swift */; };
+		EB6D14B3271C8D650016E5F4 /* PhotoDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6D14B1271C8D650016E5F4 /* PhotoDetailView.swift */; };
+		EB6D14B4271C8D650016E5F4 /* PhotoDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6D14B1271C8D650016E5F4 /* PhotoDetailView.swift */; };
 		EBAA9CFC271C577B008121B7 /* APIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAA9CFB271C577B008121B7 /* APIConfig.swift */; };
 		EBAA9CFD271C577B008121B7 /* APIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAA9CFB271C577B008121B7 /* APIConfig.swift */; };
 		EBAA9CFE271C577B008121B7 /* APIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAA9CFB271C577B008121B7 /* APIConfig.swift */; };
@@ -175,6 +184,9 @@
 		EB4255AD271B6BB900E03C5E /* UIImageView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Ext.swift"; sourceTree = "<group>"; };
 		EB44284B271ABBCB00285C3E /* PhotoListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListCell.swift; sourceTree = "<group>"; };
 		EB44284F271ABBEB00285C3E /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
+		EB6D14A8271C8CE90016E5F4 /* PhotoDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailViewModel.swift; sourceTree = "<group>"; };
+		EB6D14AC271C8CFD0016E5F4 /* PhotoDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailCoordinator.swift; sourceTree = "<group>"; };
+		EB6D14B1271C8D650016E5F4 /* PhotoDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailView.swift; sourceTree = "<group>"; };
 		EBAA9CFB271C577B008121B7 /* APIConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfig.swift; sourceTree = "<group>"; };
 		EBAA9CFF271C57DF008121B7 /* APIConfig+PROD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIConfig+PROD.swift"; sourceTree = "<group>"; };
 		EBAA9D03271C581E008121B7 /* APIConfig+DEV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIConfig+DEV.swift"; sourceTree = "<group>"; };
@@ -470,6 +482,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		EB6D14B0271C8D4E0016E5F4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				EB6D14B1271C8D650016E5F4 /* PhotoDetailView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		EBAA9CF9271C575C008121B7 /* Config */ = {
 			isa = PBXGroup;
 			children = (
@@ -501,6 +521,9 @@
 			isa = PBXGroup;
 			children = (
 				EBAA9D0D271C6646008121B7 /* PhotoDetailController.swift */,
+				EB6D14A8271C8CE90016E5F4 /* PhotoDetailViewModel.swift */,
+				EB6D14AC271C8CFD0016E5F4 /* PhotoDetailCoordinator.swift */,
+				EB6D14B0271C8D4E0016E5F4 /* Views */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -759,6 +782,7 @@
 				EBAA9CFC271C577B008121B7 /* APIConfig.swift in Sources */,
 				EB07DC6A27172D7C005AD0AF /* AppDelegate.swift in Sources */,
 				EB07DCDF27173F75005AD0AF /* SplashView.swift in Sources */,
+				EB6D14B2271C8D650016E5F4 /* PhotoDetailView.swift in Sources */,
 				EB07DCC1271735C4005AD0AF /* BaseCoordinator.swift in Sources */,
 				EB1C800327197E1F00D4F984 /* Others.swift in Sources */,
 				EB07DCBC27173552005AD0AF /* SplashCoordinator.swift in Sources */,
@@ -774,6 +798,7 @@
 				EB2B0845271A165E004B8EC8 /* PhotoListCoordinator.swift in Sources */,
 				EB07DCDA27173E23005AD0AF /* RootViewConfigurator.swift in Sources */,
 				EBAA9D0E271C6646008121B7 /* PhotoDetailController.swift in Sources */,
+				EB6D14A9271C8CE90016E5F4 /* PhotoDetailViewModel.swift in Sources */,
 				EBAA9D09271C59E5008121B7 /* Reactive+UIScrollView.swift in Sources */,
 				EB07DCC627173771005AD0AF /* UINavigationController+Ext.swift in Sources */,
 				EB07DCCE27173C91005AD0AF /* UIConfigurator.swift in Sources */,
@@ -783,6 +808,7 @@
 				EB2B08342719FE79004B8EC8 /* PhotoFeedRequest.swift in Sources */,
 				EB1C80072719823700D4F984 /* HTTPRequest.swift in Sources */,
 				EB442850271ABBEB00285C3E /* BaseCollectionViewCell.swift in Sources */,
+				EB6D14AD271C8CFD0016E5F4 /* PhotoDetailCoordinator.swift in Sources */,
 				EB07DC6C27172D7C005AD0AF /* SceneDelegate.swift in Sources */,
 				EB2B083D271A1639004B8EC8 /* PhotoListViewController.swift in Sources */,
 				EB07DCA5271731F0005AD0AF /* Coordinator.swift in Sources */,
@@ -802,6 +828,7 @@
 				EBAA9CFD271C577B008121B7 /* APIConfig.swift in Sources */,
 				EB07DC8027172D91005AD0AF /* AppDelegate.swift in Sources */,
 				EB07DCE027173F75005AD0AF /* SplashView.swift in Sources */,
+				EB6D14B3271C8D650016E5F4 /* PhotoDetailView.swift in Sources */,
 				EB07DCC2271735C4005AD0AF /* BaseCoordinator.swift in Sources */,
 				EB1C800427197E1F00D4F984 /* Others.swift in Sources */,
 				EB07DCBD27173552005AD0AF /* SplashCoordinator.swift in Sources */,
@@ -817,6 +844,7 @@
 				EB1C7FFB27197D6000D4F984 /* HTTPMethod.swift in Sources */,
 				EB2B0846271A165E004B8EC8 /* PhotoListCoordinator.swift in Sources */,
 				EBAA9D0F271C6646008121B7 /* PhotoDetailController.swift in Sources */,
+				EB6D14AA271C8CE90016E5F4 /* PhotoDetailViewModel.swift in Sources */,
 				EBAA9D0A271C59E5008121B7 /* Reactive+UIScrollView.swift in Sources */,
 				EB07DCDB27173E23005AD0AF /* RootViewConfigurator.swift in Sources */,
 				EB07DCC727173771005AD0AF /* UINavigationController+Ext.swift in Sources */,
@@ -826,6 +854,7 @@
 				EB07DCE5271740F6005AD0AF /* Const.swift in Sources */,
 				EB2B08352719FE79004B8EC8 /* PhotoFeedRequest.swift in Sources */,
 				EB1C80082719823700D4F984 /* HTTPRequest.swift in Sources */,
+				EB6D14AE271C8CFD0016E5F4 /* PhotoDetailCoordinator.swift in Sources */,
 				EB442851271ABBEB00285C3E /* BaseCollectionViewCell.swift in Sources */,
 				EB07DC8127172D91005AD0AF /* SceneDelegate.swift in Sources */,
 				EB2B083E271A1639004B8EC8 /* PhotoListViewController.swift in Sources */,
@@ -845,6 +874,7 @@
 				EBAA9CFE271C577B008121B7 /* APIConfig.swift in Sources */,
 				EB07DC8F27172DA3005AD0AF /* AppDelegate.swift in Sources */,
 				EB07DCE127173F75005AD0AF /* SplashView.swift in Sources */,
+				EB6D14B4271C8D650016E5F4 /* PhotoDetailView.swift in Sources */,
 				EB07DCC3271735C4005AD0AF /* BaseCoordinator.swift in Sources */,
 				EB1C800527197E1F00D4F984 /* Others.swift in Sources */,
 				EB07DCBE27173552005AD0AF /* SplashCoordinator.swift in Sources */,
@@ -860,6 +890,7 @@
 				EB1C7FFC27197D6000D4F984 /* HTTPMethod.swift in Sources */,
 				EB2B0847271A165E004B8EC8 /* PhotoListCoordinator.swift in Sources */,
 				EBAA9D10271C6646008121B7 /* PhotoDetailController.swift in Sources */,
+				EB6D14AB271C8CE90016E5F4 /* PhotoDetailViewModel.swift in Sources */,
 				EBAA9D0B271C59E5008121B7 /* Reactive+UIScrollView.swift in Sources */,
 				EB07DCDC27173E23005AD0AF /* RootViewConfigurator.swift in Sources */,
 				EB07DCC827173771005AD0AF /* UINavigationController+Ext.swift in Sources */,
@@ -869,6 +900,7 @@
 				EB07DCE6271740F6005AD0AF /* Const.swift in Sources */,
 				EB2B08362719FE79004B8EC8 /* PhotoFeedRequest.swift in Sources */,
 				EB1C80092719823700D4F984 /* HTTPRequest.swift in Sources */,
+				EB6D14AF271C8CFD0016E5F4 /* PhotoDetailCoordinator.swift in Sources */,
 				EB442852271ABBEB00285C3E /* BaseCollectionViewCell.swift in Sources */,
 				EB07DC9027172DA3005AD0AF /* SceneDelegate.swift in Sources */,
 				EB2B083F271A1639004B8EC8 /* PhotoListViewController.swift in Sources */,

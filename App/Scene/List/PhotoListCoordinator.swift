@@ -21,4 +21,9 @@ class PhotoListCoordinator: BaseCoordinator {
         viewController.register(to: self)
         set([viewController], animated: false)
     }
+    
+    func detail(with photo: Photo) {
+        let detailCoordinator: PhotoDetailCoordinator = .init(navigationController: navigationController)
+        detailCoordinator.start(with: photo)
+    }
 }

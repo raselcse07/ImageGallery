@@ -71,10 +71,14 @@ class PhotoListViewModel: ViewModelType {
             .flatMap { text -> Observable<String> in
                 if text.isEmpty {
                     return .just(Const.SEARCH_INITIAL)
-                } else {
+                } else if text.count < 2 {
+                    return .empty()
+                }
+                else {
                     return .just(text)
                 }
             }
+            .filter { $0 != self.currentQuery }
             .share()
         return searchQuery
     }
@@ -122,7 +126,6 @@ class PhotoListViewModel: ViewModelType {
             .subscribe(onNext: { [weak self] feed in
                 guard let self = self else { return }
                 guard feed.photos.count > 0 else {
-                    self._loadMore.onCompleted()
                     return
                 }
                 let current = self._photos.value
@@ -135,8 +138,12 @@ class PhotoListViewModel: ViewModelType {
     /// Get Selected Photo Information
     private func observeSelectedItem() {
         _itemSelected
-            .map { [unowned self] indexPath ->  Photo in
-                return self._photos.value[indexPath.row]
+            .withLatestFrom(_photos) { ($0.row, $1)}
+            .flatMap { (index, photo) -> Observable<Photo> in
+                guard index < photo.count else {
+                    return .empty()
+                }
+                return .just(photo[index])
             }
             .bind(to: _detail)
             .disposed(by: disposeBag)
