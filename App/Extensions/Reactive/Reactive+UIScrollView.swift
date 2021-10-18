@@ -21,7 +21,6 @@ extension Reactive where Base: UIScrollView {
         }
         .distinctUntilChanged()
         .filter { $0 }
-//        .map { _ in () }
         return ControlEvent(events: source)
     }
 }
