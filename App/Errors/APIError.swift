@@ -26,7 +26,7 @@ struct APIError: Error {
     static var EHC10002   = APIError(code: "EHC10002", description: "Falied while decoding from JSON.")
     
     /// - Tag: - Add extra description to an existing error
-    mutating func extent(with value: Any) -> APIError {
+    mutating func extend(with value: Any) -> APIError {
         description += "\n\(value)"
         return self
     }

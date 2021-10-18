@@ -32,7 +32,7 @@ class HTTPClient {
             .map { result -> Data in
                 // Check Error
                 guard result.response.statusCode == 200 else {
-                    throw APIError.EHC10001.extent(with: result.response)
+                    throw APIError.EHC10001.extend(with: result.response)
                 }
                 return result.data
             }
@@ -42,7 +42,7 @@ class HTTPClient {
                     let decoder = JSONDecoder()
                     return try decoder.decode(Model.self, from: data)
                 } catch let error {
-                    throw APIError.EHC10002.extent(with: error)
+                    throw APIError.EHC10002.extend(with: error)
                 }
             }
             .asSingle()
