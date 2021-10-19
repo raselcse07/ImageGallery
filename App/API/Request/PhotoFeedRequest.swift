@@ -10,6 +10,10 @@ import Foundation
 
 class PhotoFeedRequest: APIRequest<PhotoFeed> {
     
+    override var provider: APIConfig {
+        return .pexels
+    }
+    
     override var path: String {
         return "/search"
     }

@@ -8,17 +8,34 @@
 import Foundation
 
 protocol APIConfigProtocol {
-    static var baseURL: URL { get }
+    var baseURL: URL { get }
 }
 
-struct APIConfig: APIConfigProtocol {
+enum APIConfig: APIConfigProtocol {
     
-    static var baseURL: URL {
-        return URL(string: baseURLString)!
+    case pexels
+    
+    var baseURL: URL {
+        switch self {
+            case .pexels:
+                return  URL(string: baseURLString)!
+        }
     }
     
-    static var authKey: String {
-        return "563492ad6f91700001000001479b02c753ef4400a179c035e516a474"
+    var authKey: String {
+        switch self {
+            case .pexels:
+                return "563492ad6f91700001000001479b02c753ef4400a179c035e516a474"
+        }
+    }
+    
+    var headers: Headers {
+        switch self {
+            case .pexels:
+                return [
+                    "Authorization" : "Bearer \(authKey)"
+                ]
+        }
     }
 }
 

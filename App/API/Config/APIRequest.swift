@@ -9,13 +9,13 @@ import Foundation
 
 class APIRequest<Model: Decodable>: HTTPRequest<Model> {
     
+    var provider: APIConfig { fatalError(APIError.EHR1005.description) }
+    
     override var baseURL: URL {
-        return APIConfig.baseURL
+        return provider.baseURL
     }
     
     override var headers: Headers {
-        return [
-            "Authorization" : "Bearer \(APIConfig.authKey)"
-        ]
+        return provider.headers
     }
 }

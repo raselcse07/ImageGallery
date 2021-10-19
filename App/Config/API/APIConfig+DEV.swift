@@ -9,7 +9,7 @@ import Foundation
 
 extension APIConfig {
     
-    static var baseURLString: String {
+    var baseURLString: String {
         return "https://api.pexels.com/v1/" // TODO: SET Development API URL
     }
 }
