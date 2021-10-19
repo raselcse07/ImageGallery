@@ -138,6 +138,7 @@
 		EBCE741B271EB3CF00983447 /* UICollectionView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCE741A271EB3CF00983447 /* UICollectionView+Ext.swift */; };
 		EBCE741C271EB3CF00983447 /* UICollectionView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCE741A271EB3CF00983447 /* UICollectionView+Ext.swift */; };
 		EBCE741D271EB3CF00983447 /* UICollectionView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCE741A271EB3CF00983447 /* UICollectionView+Ext.swift */; };
+		EBCE7420271EEFF300983447 /* PhotoListTestDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCE741F271EEFF300983447 /* PhotoListTestDataProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -214,6 +215,7 @@
 		EBC8E4EF271D623D00EE6DE5 /* Test-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Test-Info.plist"; sourceTree = "<group>"; };
 		EBC8E4F1271D628D00EE6DE5 /* PhotoListViewModeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListViewModeTests.swift; sourceTree = "<group>"; };
 		EBCE741A271EB3CF00983447 /* UICollectionView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Ext.swift"; sourceTree = "<group>"; };
+		EBCE741F271EEFF300983447 /* PhotoListTestDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListTestDataProvider.swift; sourceTree = "<group>"; };
 		F0CAEF9399A66FC5F3B08642 /* Pods-ImageGallery-STG.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageGallery-STG.debug.xcconfig"; path = "Target Support Files/Pods-ImageGallery-STG/Pods-ImageGallery-STG.debug.xcconfig"; sourceTree = "<group>"; };
 		F7FAEAF3378063D5AD3CE4BF /* Pods-ImageGallery-Test.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageGallery-Test.release.xcconfig"; path = "Target Support Files/Pods-ImageGallery-Test/Pods-ImageGallery-Test.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -568,6 +570,7 @@
 			isa = PBXGroup;
 			children = (
 				EBC8E4F0271D625100EE6DE5 /* PhotoList */,
+				EBCE741E271EEFB700983447 /* Provider */,
 				EBC8E4EE271D61E900EE6DE5 /* Supportings */,
 			);
 			path = Tests;
@@ -587,6 +590,14 @@
 				EBC8E4F1271D628D00EE6DE5 /* PhotoListViewModeTests.swift */,
 			);
 			path = PhotoList;
+			sourceTree = "<group>";
+		};
+		EBCE741E271EEFB700983447 /* Provider */ = {
+			isa = PBXGroup;
+			children = (
+				EBCE741F271EEFF300983447 /* PhotoListTestDataProvider.swift */,
+			);
+			path = Provider;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1034,6 +1045,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EBC8E4F2271D628D00EE6DE5 /* PhotoListViewModeTests.swift in Sources */,
+				EBCE7420271EEFF300983447 /* PhotoListTestDataProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
