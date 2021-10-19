@@ -18,7 +18,7 @@ struct APIConfig: APIConfigProtocol {
     }
     
     static var authKey: String {
-        return "563492ad6f91700001000001eef89af6662c480d83814d43ebc2af7c"
+        return "563492ad6f91700001000001479b02c753ef4400a179c035e516a474"
     }
 }
 

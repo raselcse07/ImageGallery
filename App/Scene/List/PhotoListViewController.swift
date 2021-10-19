@@ -31,6 +31,10 @@ class PhotoListViewController: BaseViewController, ViewModelable, Coordinatable,
         return searchController
     }()
     
+    lazy private var activityIndicator: UIActivityIndicatorView = {
+        return UIActivityIndicatorView(style: .medium)
+    }()
+        
     // MARK: - Life Cycle
     override func loadView() {
         view = RootViewType()
@@ -72,16 +76,24 @@ class PhotoListViewController: BaseViewController, ViewModelable, Coordinatable,
             .rx
             .toBottom()
             .skip(1)
-            .bind(to: viewModel.input.loadMore)
+            .bind(to: viewModel.input.fetchNextPage)
             .disposed(by: disposeBag)
-        
+
         // Output
         viewModel
             .output
             .photos
-            .drive(rootView.collectionView.rx.items(cellIdentifier: PhotoListCell.indentifier, cellType: PhotoListCell.self)) { _ , model, cell in
-                cell.setup(model: model)
-            }
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] photo in
+                guard let self = self else { return }
+                let currentStart = self.viewModel.output.currentStartIndex.value
+                let currentEnd = self.viewModel.output.currentEndIndex.value
+                let indexPath = self.viewModel.createIndexPathToReload(start: currentStart, end: currentEnd)
+                self.activityIndicator.startAnimating()
+                self.rootView.collectionView.insertItems(start: currentStart, end: currentEnd, indexPath: indexPath) {
+                    self.activityIndicator.stopAnimating()
+                }
+            })
             .disposed(by: disposeBag)
         
         viewModel
@@ -102,11 +114,39 @@ extension PhotoListViewController {
         
         navigationItem.searchController = searchController
         navigationItem.title = Const.NAV_TITLE_PHOTO_LIST
-        navigationItem.hidesSearchBarWhenScrolling = true
+        navigationItem.hidesSearchBarWhenScrolling = false
         navigationController?.navigationBar.prefersLargeTitles = true
         // Collection View Setup
         rootView.collectionView.keyboardDismissMode = .onDrag
-        // Regsiter CollectionView Cell
-        rootView.collectionView.register(PhotoListCell.self, forCellWithReuseIdentifier: PhotoListCell.indentifier)
+        rootView.collectionView.dataSource = self
+        // Regsiter CollectionView Cell & Supplementary View
+        rootView.collectionView.register(PhotoListCell.self)
+        rootView.collectionView.register(view: UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter)
+
+    }
+}
+
+// MARK: - UICollectionViewDataSource
+extension PhotoListViewController: UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return viewModel.output.photos.value.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(with: PhotoListCell.self, indexPath: indexPath)
+        let photo = viewModel.output.photos.value[indexPath.row]
+        cell.setup(model: photo)
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if kind == UICollectionView.elementKindSectionFooter {
+            let footer = collectionView.dequeueReusableSupplementaryView(with: UICollectionReusableView.self, kind: kind, indexPath: indexPath)
+            footer.addSubview(activityIndicator)
+            activityIndicator.frame = CGRect(x: 0, y: 0, width: collectionView.bounds.width, height: 50)
+            return footer
+        }
+        return UICollectionReusableView()
     }
 }

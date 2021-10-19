@@ -26,12 +26,13 @@ struct PhotoFeed: Decodable {
 
 // MARK: - Photo
 struct Photo: Decodable {
-    
+    let id: Int
     let url: String
     let photographer: String
     let src: Src
     
     enum CodingKeys: String, CodingKey {
+        case id
         case url
         case photographer
         case src
@@ -49,3 +50,8 @@ struct Src: Decodable {
     }
 }
 
+extension Photo: Equatable {
+    static func == (lhs: Photo, rhs: Photo) -> Bool {
+        return lhs.id == rhs.id
+    }
+}

@@ -15,6 +15,8 @@ class PhotoListView: BaseView {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowlayout)
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         collectionView.backgroundColor = .systemBackground
+        collectionView.showsVerticalScrollIndicator = false
+        flowlayout.footerReferenceSize = CGSize(width: collectionView.bounds.width, height: 50)
         return collectionView
     }()
     

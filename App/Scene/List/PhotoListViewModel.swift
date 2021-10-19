@@ -15,15 +15,17 @@ class PhotoListViewModel: ViewModelType {
     struct Input {
         let searchText: AnyObserver<String>
         let itemSelected: AnyObserver<IndexPath>
-        let loadMore: AnyObserver<Bool>
+        let fetchNextPage: AnyObserver<Bool>
     }
     
     // MARK:- Output
     struct Output {
-        let photos: Driver<[Photo]>
+        let photos: BehaviorRelay<[Photo]>
         let detail: Observable<Photo>
+        let currentStartIndex: BehaviorRelay<Int>
+        let currentEndIndex: BehaviorRelay<Int>
     }
-    
+        
     // MARK: - Properties
     var input: Input!
     var output: Output!
@@ -31,12 +33,15 @@ class PhotoListViewModel: ViewModelType {
     private var disposeBag = DisposeBag()
     private var currentPage: Int = 0
     private var currentQuery: String = ""
-    private var isPaginated: Bool = false
-    private let _searchText = ReplaySubject<String>.create(bufferSize: 1)
-    private let _itemSelected = PublishSubject<IndexPath>()
-    private let _loadMore = PublishSubject<Bool>()
-    private let _photos = BehaviorRelay<[Photo]>(value: [])
-    private let _detail = PublishSubject<Photo>()
+    private var hasNext: Bool = false
+    
+    private let searchTextSubject = ReplaySubject<String>.create(bufferSize: 1)
+    private let itemSelectedSubject = PublishSubject<IndexPath>()
+    private let fetchNextSubject = PublishSubject<Bool>()
+    private let photosBehaviorRelay = BehaviorRelay<[Photo]>(value: [])
+    private let detailSubject = PublishSubject<Photo>()
+    private let currentStartIndexSubject = BehaviorRelay<Int>(value: 0)
+    private let currentEndIndexSubject = BehaviorRelay<Int>(value: 0)
     
     init() {
         bind()
@@ -53,25 +58,35 @@ class PhotoListViewModel: ViewModelType {
         observeSelectedItem()
         // Input & Output
         input = Input(
-            searchText: _searchText.asObserver(),
-            itemSelected: _itemSelected.asObserver(),
-            loadMore: _loadMore.asObserver()
+            searchText: searchTextSubject.asObserver(),
+            itemSelected: itemSelectedSubject.asObserver(),
+            fetchNextPage: fetchNextSubject.asObserver()
         )
         output = Output(
-            photos: _photos.asDriver(onErrorJustReturn: []),
-            detail: _detail.asObservable()
+            photos: photosBehaviorRelay,
+            detail: detailSubject.asObservable(),
+            currentStartIndex: currentStartIndexSubject,
+            currentEndIndex: currentEndIndexSubject
         )
+    }
+    
+    func createIndexPathToReload(start: Int, end: Int) -> [IndexPath] {
+        var indexPaths: [IndexPath] = []
+        for i in start...end {
+            indexPaths.append(IndexPath(item: i, section: 0))
+        }
+        return indexPaths
     }
     
     /// Prepare `Observable` string with the text of search bar
     /// - Returns: `Observable`
     private func prepareSearchQuery() -> Observable<String> {
-        let searchQuery = _searchText
+        let searchQuery = searchTextSubject
             .debounce(.milliseconds(500), scheduler: ConcurrentMainScheduler.instance)
             .flatMap { text -> Observable<String> in
                 if text.isEmpty {
                     return .just(Const.SEARCH_INITIAL)
-                } else if text.count < 2 {
+                } else if text.count < 3 {
                     return .empty()
                 }
                 else {
@@ -93,6 +108,9 @@ class PhotoListViewModel: ViewModelType {
                     .do(onNext: {
                         self.currentPage = $0.page
                         self.currentQuery = text
+                        self.hasNext = $0.nextPage != nil
+                        self.currentStartIndexSubject.accept(0)
+                        self.currentEndIndexSubject.accept(0)
                     })
                     .map { $0.photos }
                     .materialize()
@@ -102,19 +120,20 @@ class PhotoListViewModel: ViewModelType {
         searchResult
             .flatMap { $0.element.map(Observable.just) ?? .empty() }
             .subscribe(onNext: { photos in
-                self._photos.accept(photos)
+                // update photos
+                self.photosBehaviorRelay.accept(photos)
             })
             .disposed(by: disposeBag)
     }
     
     /// Fetch the data of next page
     private func prepareNextPageResult() {
-        _loadMore
+        fetchNextSubject
             .throttle(.milliseconds(500), scheduler: ConcurrentMainScheduler.instance)
             .asDriver(onErrorJustReturn: false)
-            .drive { [weak self] next in
+            .drive { [weak self] shouldFetchNext in
                 guard let self = self else { return }
-                if next {
+                if shouldFetchNext && self.hasNext {
                     self.loadNext(query: self.currentQuery, page: self.currentPage + 1)
                 }
             }
@@ -122,31 +141,48 @@ class PhotoListViewModel: ViewModelType {
     }
     
     private func loadNext(query: String, page: Int) {
+        
         fetchFeed(query: query, page: page)
             .subscribe(onNext: { [weak self] feed in
                 guard let self = self else { return }
                 guard feed.photos.count > 0 else {
                     return
                 }
-                let current = self._photos.value
-                self._photos.accept(current + feed.photos)
+                // current photos
+                let current = self.photosBehaviorRelay.value
+                // update current page
                 self.currentPage = feed.page
+                // update next page flag
+                self.hasNext = feed.nextPage != nil
+                // update current start & end index
+                self.setCurrentStartEndIndex(start: current.count, end: feed.photos.count - 1)
+                // update photos
+                self.photosBehaviorRelay.accept(current + feed.photos)
             })
             .disposed(by: disposeBag)
     }
     
+    
     /// Get Selected Photo Information
     private func observeSelectedItem() {
-        _itemSelected
-            .withLatestFrom(_photos) { ($0.row, $1)}
+        itemSelectedSubject
+            .withLatestFrom(photosBehaviorRelay) { ($0.row, $1)}
             .flatMap { (index, photo) -> Observable<Photo> in
                 guard index < photo.count else {
                     return .empty()
                 }
                 return .just(photo[index])
             }
-            .bind(to: _detail)
+            .bind(to: detailSubject)
             .disposed(by: disposeBag)
+    }
+    
+    /// - Update current start & end index
+    private func setCurrentStartEndIndex(start: Int, end: Int) {
+        // update current start index
+        currentStartIndexSubject.accept(start)
+        // update current end index
+        currentEndIndexSubject.accept(currentStartIndexSubject.value + end)
     }
     
     /// Request for `PhotoFeed`
