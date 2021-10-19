@@ -17,7 +17,6 @@ extension UIImageView {
         kf.indicatorType = .activity
         kf.setImage(
             with: url,
-            placeholder: UIImage(named: Const.LOGO),
             options: [
                 .processor(proccessor),
                 .transition(.fade(1.5)),

@@ -11,6 +11,8 @@ import RxCocoa
 
 class PhotoListViewModel: ViewModelType {
     
+    typealias PhotoFetchService = (PhotoFeedRequest) -> Observable<PhotoFeed>
+    
     // MARK: - Input
     struct Input {
         let searchText: AnyObserver<String>
@@ -34,6 +36,8 @@ class PhotoListViewModel: ViewModelType {
     private var currentPage: Int = 0
     private var currentQuery: String = ""
     private var hasNext: Bool = false
+    private let service: PhotoFetchService
+    private let scheduler: SchedulerType
     
     private let searchTextSubject = ReplaySubject<String>.create(bufferSize: 1)
     private let itemSelectedSubject = PublishSubject<IndexPath>()
@@ -43,11 +47,30 @@ class PhotoListViewModel: ViewModelType {
     private let currentStartIndexSubject = BehaviorRelay<Int>(value: 0)
     private let currentEndIndexSubject = BehaviorRelay<Int>(value: 0)
     
-    init() {
-        bind()
+    // MARK: - Initializer
+    init(
+        service: @escaping PhotoFetchService = APIClient.shared.send,
+        scheduler: SchedulerType = ConcurrentMainScheduler.instance
+    ) {
+        self.service = service
+        self.scheduler = scheduler
+        self.bind()
     }
     
-    func bind() {
+    /// Calculate `IndexPath` that need to be updated
+    /// - Parameter start: Total items of current `Photos` array.
+    /// - Parameter end: Total items of new `Photos` array.
+    /// - Returns: Array of `IndexPath`
+    func createIndexPathToReload(start: Int, end: Int) -> [IndexPath] {
+        var indexPaths: [IndexPath] = []
+        for i in start...end {
+            indexPaths.append(IndexPath(item: i, section: 0))
+        }
+        return indexPaths
+    }
+    
+    /// - Tag: Private Methods
+    private func bind() {
         // preapare search query
         let searchQuery = prepareSearchQuery()
         // fetch photos with the query
@@ -70,19 +93,11 @@ class PhotoListViewModel: ViewModelType {
         )
     }
     
-    func createIndexPathToReload(start: Int, end: Int) -> [IndexPath] {
-        var indexPaths: [IndexPath] = []
-        for i in start...end {
-            indexPaths.append(IndexPath(item: i, section: 0))
-        }
-        return indexPaths
-    }
-    
     /// Prepare `Observable` string with the text of search bar
     /// - Returns: `Observable`
     private func prepareSearchQuery() -> Observable<String> {
         let searchQuery = searchTextSubject
-            .debounce(.milliseconds(500), scheduler: ConcurrentMainScheduler.instance)
+            .debounce(.milliseconds(500), scheduler: scheduler)
             .flatMap { text -> Observable<String> in
                 if text.isEmpty {
                     return .just(Const.SEARCH_INITIAL)
@@ -104,7 +119,7 @@ class PhotoListViewModel: ViewModelType {
         let searchResult = query
             .flatMap { [weak self] text -> Observable<Event<[Photo]>> in
                 guard let self = self else { return .empty() }
-                return self.fetchFeed(query: text, page: 1)
+                return self.service(PhotoFeedRequest(searchTerm: text, page: 1))
                     .do(onNext: {
                         self.currentPage = $0.page
                         self.currentQuery = text
@@ -119,7 +134,8 @@ class PhotoListViewModel: ViewModelType {
         
         searchResult
             .flatMap { $0.element.map(Observable.just) ?? .empty() }
-            .subscribe(onNext: { photos in
+            .subscribe(onNext: { [weak self] photos in
+                guard let self = self else { return }
                 // update photos
                 self.photosBehaviorRelay.accept(photos)
             })
@@ -129,7 +145,7 @@ class PhotoListViewModel: ViewModelType {
     /// Fetch the data of next page
     private func prepareNextPageResult() {
         fetchNextSubject
-            .throttle(.milliseconds(500), scheduler: ConcurrentMainScheduler.instance)
+            .throttle(.milliseconds(500), scheduler: scheduler)
             .asDriver(onErrorJustReturn: false)
             .drive { [weak self] shouldFetchNext in
                 guard let self = self else { return }
@@ -140,9 +156,10 @@ class PhotoListViewModel: ViewModelType {
             .disposed(by: disposeBag)
     }
     
+    /// - Parameter query: Search string.
+    /// - Parameter page: Desired page
     private func loadNext(query: String, page: Int) {
-        
-        fetchFeed(query: query, page: page)
+        service(PhotoFeedRequest(searchTerm: query, page: page))
             .subscribe(onNext: { [weak self] feed in
                 guard let self = self else { return }
                 guard feed.photos.count > 0 else {
@@ -161,7 +178,6 @@ class PhotoListViewModel: ViewModelType {
             })
             .disposed(by: disposeBag)
     }
-    
     
     /// Get Selected Photo Information
     private func observeSelectedItem() {
@@ -183,18 +199,5 @@ class PhotoListViewModel: ViewModelType {
         currentStartIndexSubject.accept(start)
         // update current end index
         currentEndIndexSubject.accept(currentStartIndexSubject.value + end)
-    }
-    
-    /// Request for `PhotoFeed`
-    /// - Parameter query: Any String.
-    /// - Parameter page: Desired page
-    /// - Returns: `Observable<PhotoFeed>`
-    private func fetchFeed(query: String, page: Int) -> Observable<PhotoFeed> {
-        let request = PhotoFeedRequest(searchTerm: query, page: page)
-        let task = APIClient.shared.send(request)
-            .asObservable()
-            .share()
-        task.subscribe().disposed(by: disposeBag)
-        return task
     }
 }

@@ -31,9 +31,7 @@ class PhotoListCell: BaseCollectionViewCell {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
-    
-    static let indentifier = String(describing: "\(PhotoListCell.self)")
-    
+
     override func systemLayoutSizeFitting(_ targetSize: CGSize, withHorizontalFittingPriority horizontalFittingPriority: UILayoutPriority, verticalFittingPriority: UILayoutPriority) -> CGSize {
         
         let padding: CGFloat = 4

@@ -23,10 +23,6 @@ class PhotoDetailViewModel: ViewModelType {
     
     init(photo: Photo) {
         self.photo = photo
-        self.bind()
-    }
-    
-    func bind() {
         input = Input()
         output = Output(photo: photo)
     }

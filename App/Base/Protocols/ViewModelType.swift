@@ -16,5 +16,4 @@ protocol ViewModelType {
     var input: Input! { get }
     var output: Output! { get }
     
-    func bind()
 }
