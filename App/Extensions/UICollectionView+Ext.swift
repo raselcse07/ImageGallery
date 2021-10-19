@@ -34,7 +34,7 @@ extension UICollectionView {
         return dequeueReusableCell(withReuseIdentifier: String(describing: cellType), for: indexPath) as! Cell
     }
     
-    // footer view with activity indicator
+    // dequeueReusableSupplementaryView
     func dequeueReusableSupplementaryView<View: UICollectionReusableView>(with viewType: View.Type, kind: String, indexPath: IndexPath) -> View {
         return dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: String(describing: viewType), for: indexPath) as! View
     }

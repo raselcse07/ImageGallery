@@ -25,7 +25,7 @@ enum APIConfig: APIConfigProtocol {
     var authKey: String {
         switch self {
             case .pexels:
-                return "563492ad6f91700001000001479b02c753ef4400a179c035e516a474"
+                return "563492ad6f917000010000014f53a76779ff4cde882b473e1d65a330"
         }
     }
     
