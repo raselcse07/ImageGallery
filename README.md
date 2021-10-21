@@ -43,7 +43,7 @@ extension APIConfig {
 }
 
 ```
-** There is a base url for `Pixels` now. 
+** There is a base url for `Pexels` now. 
 
 ## Dependency
 
